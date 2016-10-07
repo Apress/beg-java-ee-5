@@ -1,0 +1,11 @@
+insert into Stock values ('ABC', 'ABC Company');
+insert into Stock values ('ZZZ', 'Zigby Zebras');
+insert into Stock values ('ICS', 'Internet Corp of Slobovia');
+insert into Stock values ('DDC', 'Digby Door Company');
+insert into Stock values ('ZAP', 'Zapalopalorinski Ltd.');
+insert into Stock values ('JIM', 'Jimco');
+insert into Stock values ('SRU', 'Stocks R Us');
+insert into Stock values ('SRI', 'Shelves and Radios Inc');
+insert into Stock values ('FBC', 'Foo Bar Company');
+insert into Stock values ('DDBC', 'Ding Dong Bell Company');
+insert into Stock values ('UDE', 'Upn Down Elevator Company');

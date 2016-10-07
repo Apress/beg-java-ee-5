@@ -1,0 +1,89 @@
+<html>
+<head>
+
+</head>
+<body>
+	<h2>Chapter 2</h2>
+
+		<p>The version of JBoss reccommended for installation is 4.0.3.  Unfortunately the EJB implementation provided by JBoss was not officially included in the ZIP
+		file distribution due to the EJB3 specification not being finalized.  Users who have not yet downloaded JBoss or wish to try the JBoss Application Server installer
+		may visit the following link http://www.jboss.com/products/jbossas/downloads and click on the "Run Installer" link for the latest version of JBoss.
+		</p>
+		<p>The installer will download the specified version of JBoss to your computer and prompt you for the installation location and server profile.  When the list of server profiles appear,
+		select "EJB3" and continue the installation.  The remaining values suggested by the installer do not require any alteration to run the example code; the only change
+		required on your part will be to start JBoss only using the run.bat.  You should not specify the "all" configuration when starting JBoss if you have installed it
+		using the installer. JBoss will then be installed on your computer.</p>
+		<p>Users may also download the JBoss EJB3 implementation separate from the JBoss server package (in order to add EJB3 functionality to a ZIP package install of JBoss as described
+		in the book) by visiting the URL http://www.jboss.com/products/list/downloads#ejb3 and downloading the latest release candidate (At the time of errata submission, the EJB3
+		implementation is at RC3). The zip file includes an HTML document which outlines the installation procedure.  Summarized, the procedure is as follows:</p>
+	<p>
+		* Unzip the EJB3 package<br/>
+		* Copy the lib\ejb3.deployer directory to &lt;jboss directory&gt;\server\all\deploy<br/>
+		* Copy the lib\ejb3-clustered-sfsbcache-service.xml to &lt;jboss directory&gt;\server\all\deploy<br/>
+		* Copy the lib\ejb3-entity-cache-service.xml to &lt;jboss directory&gt;\server\all\deploy<br/>
+		* Copy the lib\ejb3-interceptors-aop.xml to &lt;jboss directory&gt;\server\all\deploy<br/>
+		* Copy the lib\jboss-aop-jdk50.deployer directory to &lt;jboss directory&gt;\server\all\deploy<br/>
+		* Copy the lib\jboss-xb.jar to &lt;jboss directory&gt;\server\all\lib<br/>
+		* If you are using a version of JBoss prior to 4.0.3, remove the directory &lt;jboss directory&gt;\server\all\deploy\jboss-hibernate.deployer<br/>
+		* Remove the directory &lt;jboss directory&gt;\server\all\deploy\jboss-aop.deployer<br/>
+		<br/>
+		EJB3 should now be installed in the "All" server configuration.  As discussed in the book, make certain to start the server with the "all" configuration
+		via the command "&lt;jboss directory&gt;\bin\run -c all".
+	</p>
+
+
+	<p></p>
+
+	<h2>Chapter 13, Page 552</h2>
+	<p>
+		The line of code that reads:<br/>
+<pre>
+	private @Resource(name="ConnectionFactory")
+	  ConnectionFactory factory;
+	private @Resource(name="queue/LogWriter")
+	  Queue queue;
+</pre> <br/>
+should read:<br/>
+<pre>
+	private @Resource(mappedName="java:/ConnectionFactory")
+	  ConnectionFactory factory;
+	private @Resource(mappedName="queue/LogWriter")
+	  Queue queue;
+</pre><br/>
+to reflect changes in how JNDI paths are now recognized by the @Resource directive in EJB3.  Using the mappedName
+parameter will specify that the value passed is a JNDI path.
+	</p>
+
+	<h2>Chapter 13, Page 556</h2>
+	<p>
+		The paragraph that reads:
+
+<br/>
+<pre>
+     private @Resource(name="ConnectionFactory")
+     ConnectionFactory factory;
+     private @Resource(name="queue/LogWriter")
+     Queue queue;
+</pre>
+The name directive being passed to the @Resource annotation is instructing the container that it should populate the variable
+in question (factory or queue) with a reference to the instance that the container recognizes by that name. Remember the XML
+deployment file timer-message-service.xml? That particular file instructed the JMS subsystem to create a queue named (not at all
+coincidentally) queue/LogWriter. Here that JNDI name is referenced by the @Resource annotation to acquire it, where it is
+subsequently used by timeoutHandler(Timer timer)
+<br/>
+		should instead read:
+<br/>
+<pre>
+     private @Resource(mappedName="java:/ConnectionFactory")
+     ConnectionFactory factory;
+     private @Resource(mappedName="queue/LogWriter")
+     Queue queue;
+</pre><br/>
+The mappedName directive being passed to the @Resource annotation is instructing the container that it should populate the variable
+in question (factory or queue) with a reference to the instance that the container recognizes as "mapped" via JNDI to that name. Remember
+the XML deployment file timer-message-service.xml? That particular file instructed the JMS subsystem to create a queue named in JNDI as (not at all
+coincidentally) queue/LogWriter. Here that JNDI name is referenced by the @Resource annotation to acquire it, where it is
+subsequently used by timeoutHandler(Timer timer)
+</p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <display-name>stock</display-name>
+  <servlet>
+    <display-name>StockList</display-name>
+    <servlet-name>StockList</servlet-name>
+    <servlet-class>web.StockListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StockList</servlet-name>
+    <url-pattern>/servlet/StockList/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>Error</display-name>
+    <servlet-name>Error</servlet-name>
+    <jsp-file>/Error.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <display-name>AnalystForm</display-name>
+    <servlet-name>AnalystForm</servlet-name>
+    <jsp-file>/AnalystForm.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <display-name>RatingsForm</display-name>
+    <servlet-name>RatingsForm</servlet-name>
+    <jsp-file>/RatingsForm.jsp</jsp-file>
+  </servlet>
+  <servlet>
+    <display-name>AddRating</display-name>
+    <servlet-name>AddRating</servlet-name>
+    <servlet-class>web.AddRating</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddRating</servlet-name>
+    <url-pattern>/servlet/AddRating/*</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+</web-app>

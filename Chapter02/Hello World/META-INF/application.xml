@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+ <application>
+     <display-name>Hello JEE World!</display-name>
+      <module>
+         <web>
+            <web-uri>web-app.war</web-uri>
+            <context-root>/hello</context-root>
+         </web>
+      </module>
+ </application>
